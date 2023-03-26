@@ -1,0 +1,223 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+
+\usepackage{float}
+
+% margins
+\usepackage[a4paper, left=30mm,
+ top=30mm,  right=30mm,
+ bottom=20mm]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+
+% correct inequalities symbols
+\let\leq\leqslant
+\let\geq\geqslant
+
+
+\newenvironment{answer}{\par\emph{Ответ:}}{\par}
+
+\usepackage{csquotes}
+
+\usepackage{mathrsfs}
+
+\usepackage{indentfirst}
+
+\usepackage{color}   %Colored links
+\newtheorem{statement}{Утверждение}[section]
+
+
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=blue,
+}
+
+\usepackage[dvipsnames]{xcolor}
+
+\setlength {\marginparwidth }{2cm}
+\usepackage{todonotes}
+
+\usepackage[font=small,labelfont=bf, labelformat=empty]{caption}
+
+\usepackage{appendix}
+
+\usepackage{tikz-cd}
+
+\DeclareMathOperator{\Hom}{Hom}
+
+\renewcommand\appendixtocname{Приложения}
+\renewcommand\appendixpagename{Приложения}
+
+\begin{document}
+
+\author{Глеб Красилич}
+\title{Современная верстка математических текстов в \LaTeX}
+\date{Март 2023}
+\maketitle
+
+\tableofcontents
+
+\addcontentsline{toc}{section}{Введение}
+
+\section*{Введение}
+Система \LaTeX -- незаменимый инструмент для любого академика,
+работающего в области математики и теоретической информатики.
+Будучи свободно распространяем пакетом, \LaTeX позволяет быстро, удобно и бесплатно
+оформлять математические тексты и презентации, а богатая экосистема
+пакетов и инструментов позволяет добиться большой гибкости в оформлении
+работ. Давайте продемонстрируем некоторые возможности \LaTeX.
+
+\section{Глава первая}
+
+Начнем с самого базового.
+
+\subsection{Ссылки и библиография}
+
+Пакет \LaTeX содержит встроенные инструменты для работы с библиографией
+и ссылками на литературу. Так, необходимость написания этого текста
+на втором курсе магистратуры заставляет меня вспомнить о \cite{process}
+и даже \cite{lovecraft}.
+
+\subsection{Работа с утверждениями}
+
+В любом математическом тексте нам нужно аккуратно оформлять утверждения
+и доказательства к ним. \LaTeX позволяет делать это с легкостью:
+
+\begin{statement}[Первая теорема Геделя о неполноте]
+Пусть $F$ -- теория первого порядка, удовлетворяющая следующим
+условиям:
+\begin{enumerate}
+    \item $F$ не является противоречивой ($F$ не может доказать константу $\bot$) 
+    \item $F$ содержит Арифметику Робинсона $Q$ как подтеорию.
+\end{enumerate}
+Тогда в языке $F$ существует формула $\phi$ такая, что ни она сама,
+ни ее отрицание не выводится в $F$.
+\end{statement}
+\begin{proof}
+    Оставляем как простое упражнение для читателя.
+\end{proof}
+
+\subsection{Форматирование}
+
+Хорошо оформленный текст -- залог успеха публикации! \LaTeX дает
+нам богатые возможности для форматирования. Например, мы \textcolor{green}{можем} сделать
+текст \textcolor{red}{цветным}. Или сделать сноску на \todo[linecolor=green,bordercolor=green,backgroundcolor=green]{ВО!}полях.
+
+Или даже две \todo[linecolor=blue,bordercolor=yellow,backgroundcolor=red]{Во! (x2)}сноски!
+
+\todo[inline, backgroundcolor=yellow, inlinewidth=9.9cm]{Можем делать замечания прямо по среди текста.}
+
+Можем добавлять \href{https://math.hse.ru}{ссылки}!
+
+Можем делать сноски\footnote[1]{Сноска!}, и удобно\footnote[2]{Ну вы поняли} работать с ними\footnotemark[2]! 
+
+\subsection{Работа с иллюстрациями}
+
+Естественно \LaTeX позволяет работать с файлами изображений.
+Вот например чудесные картинки, сгенерированный алгоритмом
+Midjourney:
+
+\begin{minipage}[t][][t]{0.2\linewidth}
+\vspace{3ex}
+\begin{center}
+\includegraphics[width=71mm]{img/GlebChili_A_sad_cat_trying_to_write_mathematical_text_in_LaTeX._8451f32e-91ec-4e9b-a756-9101632af4a9.png}
+\captionof{figure}{A sad cat writing mathematical text in LaTeX.}\addtocounter{figure}{-1}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[t][][t]{0.2\linewidth}
+\vspace{3ex}
+\begin{center}
+\includegraphics[width=71mm]{img/GlebChili_Math_professor_checking_emails_from_students._In_styl_e02f6eff-3592-4212-9325-83b12cee4755.png}
+\captionof{figure}{Math professor checking emails from students. In style of Pixar.}\addtocounter{figure}{-1}
+\end{center}
+\end{minipage}\hfill
+\captionsetup{labelformat=default}
+\captionof{figure}{Работы алгоритма Midjourney}
+
+\section{Продвинутое математическое форматирование}
+
+\subsection{Шрифты}
+
+Существует традиция записывать имена определенных
+математических объектов, использую определенные
+устоявшиеся шрифты. \LaTeX (c дополнительными пакетами)
+позволяет это делать. Пример: $\mathbb{Z}$, $\mathfrak{g}$ и $\mathcal{O}$.
+
+\subsection{Оформление формул}
+
+Вот так мы можем оформлять формулы
+
+\begin{align}
+    \label{firstform}
+    (X_n, X_m) = \int\limits_0^l \bar{X_n}(x) X_m(x) dx = \lambda^{-1}_n \int \limits_0^l \bar{X_n}(x) \int \limits_0^l G(x, y) X_m(x) dx dy = \\
+    = \lambda_n^{-1}(X_m, X_n)(\bar{a_m}, X_m)
+\end{align}
+
+\begin{equation}
+    \label{secondform}
+    \Hom(F(A), B) \cong \Hom(A, G(B))
+\end{equation}
+
+Более того, на эти формулы мы можем удобно ссылаться (\ref{firstform}) (\ref{secondform}).
+
+\subsection{Продвинутое математическое форматирование}
+
+Иногда нам нужно продвинутое форматирование. \LaTeX
+помогает нам и здесь:
+
+$$
+\underbrace{a + \dots a}_{k \text{ раз}} + \overbrace{b + \dots + b}^{l \text{ раз}}
+$$
+
+$$
+\widetilde{x_N} = \sum_{\substack{1 \leq p \leq N \\ 1 \leq q \leq N \\ | p^2 + q^2 | \leq N}} (\cos px + \sin qx)
+$$
+
+\subsection{Коммутативные диаграммы}
+
+Пакет tikz-cd позволяет нам рисовать вот такие
+красивые коммутативные диаграммы:
+
+$$
+\begin{tikzcd}
+& \arrow[bend right=60, swap]{ddl}{\psi_1} P \arrow{d}{s} \arrow[bend left=60]{ddr}{\psi_2}& \\
+& \arrow[swap]{ld}{p_1 \circ eq} M \arrow{d}{u} \arrow{rd}{p_2 \circ eq}& \\
+A \arrow[swap]{r}{f} & X & \arrow{l}{g} B
+\end{tikzcd}
+$$
+
+\appendixpage \addappheadtotoc
+
+\begin{appendices}
+
+\section{Приложение I}
+
+Это приложение.
+
+\section{Приложение II}
+
+Это тоже приложение. Кстати, у нас есть знаки
+неравенства: $\leq$, $\geq$.
+
+\end{appendices}
+
+\renewcommand\refname{Библиография}
+\addcontentsline{toc}{section}{Библиография}
+
+\begin{thebibliography}{}
+
+\bibitem{process} Ф. Кафка. \textit{Процесс.} ФТМ, Москва, 1965. ISBN 978-5-4467-1747-7
+
+\bibitem{lovecraft} H. P. Lovecraft. \textit{Supernatural Horror in Literature.} The Recluse, 1927.
+
+\end{thebibliography}
+
+\end{document}
